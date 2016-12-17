@@ -1,0 +1,22 @@
+
+
+{% for article in content %}
+<div class="block" id="block_{{ article.id }}">
+	<div class="title">{{ article.title }}</div>
+	<div class="close_bl" id="{{ article.id }}">X</div>
+	<a href="/home/{{ article.id }}">
+	<div class="content">
+		<div class="left">
+			<span>Город: </span>{{ article.city }}<br/>
+			<span>Тип жилья: </span>{{ article.house_type }}<br/>
+			<span>До моря: </span>{{ article.sea }} м.<br/>
+		</div>
+		<div class="right">
+			<span>{{ article.price }}</span><br/>
+			руб/сутки
+		</div>
+	</div>
+	</a>
+</div>
+{% endfor %}
+

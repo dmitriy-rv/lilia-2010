@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="icon" type="image/vnd.microsoft.icon" href=" {% static 'img/favicon.ico' %}">
+		<title>Лилия 2010</title>
+		<meta name=viewport content="width=device-width, initial-scale=1">
+		
+		<link rel="stylesheet" media="screen" type="text/css" href="{% static 'css/style.css' %}" />
+		<link rel="stylesheet" media="screen" type="text/css" href="{% static 'css/popup.css' %}" />
+
+	</head>
+	<body>
+		<div class="content">
+			<a href="/" class="logo_href">
+				<div class="logo"></div>
+			</a>
+			<div class="content_popup">
+				<div class="phone_top">
+					<div class="phone">Наш телефон:<br/>
+					+7 940 700 10 11</div>
+				</div>
+				<a href="#win1" class="button_popup submit" onclick="toggleInformer_1();"></a>
+			</div>
+			
+			{% include 'callback.html' %}		
+			
+			<div class="header">
+				<div class="slider-main">
+					
+					<div class="jcarousel">
+						<ul class="jcarousel-list">
+							{% for article in slide %}
+
+							<li class="jcarousel-item">
+								<a href="/excursion/{{ article.id }}">
+								{% load cropping %}
+								<img src="{% cropped_thumbnail article "slide_cropping" %}">
+								<div class="href">
+									{{ article.title }}
+								</div>
+								</a>
+							</li>
+							
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+
+				<div class="menu">
+					<ul>
+						<li><a href='/'>ГЛАВНАЯ</a></li>
+						<li><a href='/house/'>ЖИЛЬЕ</a></li>
+						<li><a href='/excursions/'>ЭКСКУРСИИ</a></li>
+						<li><a href='/abchazia/'>ОБ АБХАЗИИ</a></li>
+						<li><a href='/transfer/'>ТРАНСФЕР</a></li>
+						<li><a href='/contact/'>О КОМПАНИИ</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="middle">
+				<div class="main_text gb">
+					{% autoescape off %}
+					{% for article in text %}
+					<h2>{{ article.title }}</h2>
+					<p>{{ article.text }}</p>
+					{% endfor %}
+					{% endautoescape %}
+				</div>
+				
+				<div class="houses">
+					<div class="title">
+						<span class="line_1">ЖИЛЬЕ:</span><br/>
+						<span class="line_2">Лучшие предложения</span>
+					</div>
+
+					{% for article in house %}
+					<div class="block">
+						<a href="/home/{{ article.id }}">
+							<div class="item">
+      							<div class="img">
+        							{% load cropping %}
+									<img src="{% cropped_thumbnail article "cropping" scale=0.75 %}">
+      							</div>
+      							<div class="info">
+        							<h3>подробнее</h3>
+      							</div>
+  							</div>
+
+							<div class="row">
+								<span class="left">Город:</span>
+								<span class="right">{{ article.city }}</span>
+							</div>
+							<div class="row">
+								<span class="left">Тип:</span>
+								<span class="right">{{ article.house_type }}</span>
+							</div>
+							<div class="row">
+								<span class="left">До моря:</span>
+								<span class="right">{{ article.sea }} м</span>
+							</div>
+							<div class="row">
+								<span class="left">Цена:</span>
+								<span class="right">{{ article.price }} р/сут.</span>
+							</div>
+						</a>
+					</div>
+					{% endfor %}
+				</div>
+
+				<div class="excursions">
+					<div class="title">
+						<span class="line_1">ЭКСКУРСИИ:</span><br/>
+						<span class="line_2">Лучшие предложения</span>
+					</div>
+					{% for article in excursion %}
+					<div class="block">
+ 						<a href="/excursion/{{ article.id }}">
+        					{% load cropping %}
+							<img src="{% cropped_thumbnail article "cropping" scale=0.6666666667 %}">
+        					<div class="mask1"></div>
+        					<div class="mask2"></div>
+        					<div class="info">
+          						<h3>{{ article.title }}</h3>
+          						<p>Подробнее</p>
+        					</div>
+    					</a>
+					</div>
+					{% endfor %}
+				</div>
+		
+			</div>	
+			
+			<footer>
+				<div class="left_phone">
+					Тел.: +7 940 700 10 11<br>
+					E-mail: lilia-2010@inbox.ru
+				</div>
+				<div class="viber"></div>
+				<div class="blink-text">
+					Вы можете обратиться к нам по WatsApp и Viber
+					по номеру:<br/><br/>
+					+7 940 700 10 11
+				</div>
+				<div class="link">
+					Создание сайта - <a href="	http://digart24.ru/">Digital Art</a>
+				</div>
+			</footer>
+		</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+		<script type="text/javascript" src="{% static 'js/jquery.jcarousel.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/jquery.cookie.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/callback.js' %}"></script>
+		<script type="text/javascript">
+			$(function() {
+    			$('.jcarousel').jcarousel({
+        			// Configuration goes here
+        			list: '.jcarousel-list',
+        			items: '.jcarousel-item',
+        			wrap: 'circular',
+        			animation: {
+        				duration: 500,
+        				easing:   'linear'
+        			}
+    			});
+
+    			$('.jcarousel').jcarouselAutoscroll({
+      				interval: 3000,
+      				autostart: true
+  				});
+			});
+		</script>
+
+	</body>
+</html>

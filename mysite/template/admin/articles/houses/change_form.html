@@ -1,0 +1,58 @@
+{% extends "admin/change_form.html" %}
+
+{% block after_field_sets %}
+
+ <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script type="text/javascript">
+
+document.getElementsByClassName('field-map')[0].style.cssText = 'display: none;';
+
+ymaps.ready(init);
+
+function init () {
+    var coord = new Array();
+    if (document.getElementById('id_map').value != 0){
+        var list = document.getElementById('id_map').value;
+        coord = list.split(',');    
+    }
+    else{
+        coord[0] = 43.012544;
+        coord[1] = 40.995770;
+    }
+
+    var myMap = new ymaps.Map("map", {
+            center: [coord[0], coord[1]],
+            zoom: 15
+        }),
+
+    // Создаем геообъект с типом геометрии "Точка".
+        myGeoObject = new ymaps.GeoObject({
+            // Описание геометрии.
+
+            geometry: {
+                type: "Point",
+                coordinates: myMap.getCenter()
+            },
+        }, {
+            // Опции.
+            // Иконка метки будет растягиваться под размер ее содержимого.
+            preset: 'islands#blackStretchyIcon',
+            // Метку можно перемещать.
+            draggable: true
+        });
+
+    myMap.geoObjects
+        .add(myGeoObject);
+
+    myGeoObject.events.add('dragend', function () {
+        document.getElementById('id_map').value = myGeoObject.geometry.getCoordinates();
+        console.log(myGeoObject.geometry.getCoordinates());
+    });
+}
+
+
+    </script>
+
+    <div id="map" style="width: 600px; height: 400px"></div>
+
+{% endblock %}

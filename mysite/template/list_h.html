@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8">
+		<title>Лилия 2010</title>
+		<meta name=viewport content="width=device-width, initial-scale=1">
+
+		<link rel="icon" type="image/vnd.microsoft.icon" href=" {% static 'img/favicon.ico' %}">
+
+		<link rel="stylesheet" media="screen" type="text/css" href="{% static 'css/style.css' %}" />
+		<link rel="stylesheet" media="screen" type="text/css" href="{% static 'css/mcs.css' %}" />
+		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
+		<link rel="stylesheet" media="screen" type="text/css" href="{% static 'css/popup.css' %}" />
+	</head>
+	<body class="view_house">
+		<div class="content">
+			<a href="/" class="logo_href">
+				<div class="logo"></div>
+			</a>
+			<div class="content_popup">
+				<div class="phone_top">
+					<div class="phone">Наш телефон:<br/>
+					+7 940 700 10 11</div>
+				</div>
+				<a href="#win1" class="button_popup submit" onclick="toggleInformer_1();"></a>
+			</div>
+			
+			{% include 'callback.html' %}	
+			<script type="text/javascript" src="{% static 'js/callback.js' %}"></script>
+
+			<div class="header">
+				<div class="slider">
+				</div>
+
+				<div class="menu">
+					<ul>
+						<li><a href='/'>ГЛАВНАЯ</a></li>
+						<li><a href='/house/'>ЖИЛЬЕ</a></li>
+						<li><a href='/excursions/'>ЭКСКУРСИИ</a></li>
+						<li><a href='/abchazia/'>ОБ АБХАЗИИ</a></li>
+						<li><a href='/transfer/'>ТРАНСФЕР</a></li>
+						<li><a href='/contact/'>О КОМПАНИИ</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="middle">
+				<div class="form">
+					 <form class="choise" action="/house/" metod="get" autocomplete="on">
+					 	<div class="left">
+							<div class="selectcontrolm">
+								<a id="select_1" class="mcs-open mcs">Выберите город</a>
+						 		<div id="container_1" class="mcs-container">
+            						<input type="checkbox" name="city_1" id="city_1" />
+            						<label for="city_1" class="mcs-item">Цандрипш</label>
+            						<input type="checkbox" name="city_2" id="city_2" />
+            						<label for="city_2" class="mcs-item">Гагра</label>
+            						<input type="checkbox" name="city_3" id="city_3" />
+            						<label for="city_3"  class="mcs-item">Гудаута</label>
+            						<input type="checkbox" name="city_4" id="city_4" />
+            						<label for="city_4" class="mcs-item">Пицунда</label>
+            						<input type="checkbox" name="city_5" id="city_5" />
+            						<label for="city_5" class="mcs-item">Новый Афон</label>
+            						<input type="checkbox" name="city_6" id="city_6" />
+            						<label for="city_6" class="mcs-item">Сухум</label>
+								</div>
+        					</div>
+
+							<div class="selectcontrolm">
+								<a id="select_2" class="mcs-open mcs">Тип жилья</a>
+						 		<div id="container_2" class="mcs-container">
+            						<input type="checkbox" name="type_1" id="type_1" />
+            						<label for="type_1" class="mcs-item">Мини-отель</label>
+            						<input type="checkbox" name="type_2" id="type_2" />
+            						<label for="type_2" class="mcs-item">Частный дом</label>
+            						<input type="checkbox" name="type_3" id="type_3" />
+            						<label for="type_3" class="mcs-item">Квартира</label>
+            						<input type="checkbox" name="type_4" id="type_4" />
+            						<label for="type_4" class="mcs-item">Коттедж</label>
+            						<input type="checkbox" name="type_5" id="type_5" />
+            						<label for="type_5" class="mcs-item">Отель</label>
+								</div>
+        					</div>
+						</div>
+
+						<div class="right">
+							<div class="slides">
+								<div class="slide_1">
+									<span>До моря:</span>
+									от <div id="sea-left">0</div> м.
+  									до <div id="sea-right">2000</div> м. 
+  									<input type="hidden" id="sea-left_input" name="sea-left"/>
+  									<input type="hidden" id="sea-right_input" name="sea-right"/>
+									<div id="sea" class="slider"></div>
+
+  								</div>
+
+  								<div class="slide_2">
+  									<span>Цена:</span>
+									от <div id="money-left">0</div> руб.
+  									до <div id="money-right">10000</div> руб. 
+									<div id="money" class="slider"></div>
+  									<input type="hidden" id="money-left_input" name="money-left"/>
+  									<input type="hidden" id="money-right_input" name="money-right"/>
+								</div>
+							</div>
+							<div class="checkboxes">
+					 			<input type="checkbox" name="hot_w" id="hot_w" autocomplete="on" />
+								<label for="hot_w" class="checkbox">Горячая вода</label>
+						
+								<input type="checkbox" name="lavatory" id="lavatory" />
+								<label for="lavatory" class="checkbox">Санузел</label>
+						
+								<input type="checkbox" name="w_maсhine" id="w_maсhine" />
+								<label for="w_maсhine" class="checkbox">Стиральная машина</label>
+						
+								<input type="checkbox" name="shower" id="shower" />
+								<label for="shower" class="checkbox">Душ</label>
+						
+								<input type="checkbox" name="fridge" id="fridge" />
+								<label for="fridge" class="checkbox">Холодильник</label>
+						
+								<input type="checkbox" name="tv" id="tv" />
+								<label for="tv" class="checkbox">Телевизор</label>
+						
+								<input type="checkbox" name="internet" id="internet" />
+								<label for="internet" class="checkbox">Интернет</label>
+						
+								<input type="checkbox" name="conditioner" id="conditioner" />
+								<label for="conditioner" class="checkbox">Кондиционер</label>
+						
+								<input type="checkbox" name="safe" id="safe" />
+								<label for="safe" class="checkbox">Сейф</label>
+						
+								<input type="checkbox" name="food" id="food" />
+								<label for="food" class="checkbox">Питание</label>
+						
+								<input type="checkbox" name="balcony" id="balcony" />
+								<label for="balcony" class="checkbox">Балкон</label>
+
+								<input type="checkbox" name="park" id="park" />
+								<label for="park" class="checkbox">Парковка</label>
+							</div>
+						</div>
+
+						<div class="submit">
+							<input type="submit" name="submit">
+							<span>Найти</span>
+						</div>
+
+					 </form>
+				</div>
+				{% for article in houses %}
+				<a href="/home/{{ article.id }}">
+				<div class="block_house">
+					{% load cropping %}
+					<div class="image">
+						<img src="{% cropped_thumbnail article "cropping" %}">
+					</div>
+					<div class="title">{{ article.title }}</div>
+					<span class="force">Город:</span> {{ article.city }}<br/>
+					<span class="force">Тип жилья:</span> {{ article.house_type }}</br>
+					<span class="force">До моря:</span>  {{ article.sea }} м.<br/>
+					<div class="prise"> <span>{{ article.price }}</span><br/> руб/сутки</div>
+					
+					<div class="submit">			
+					</div>
+				</div>
+				</a>
+				{% endfor %}
+			
+				<div class="pagination">
+    				<span class="step-links">
+        				{% if houses.has_previous %}
+            				<a href="?page={{ houses.previous_page_number }}">&lt; Назад</a>
+        				{% endif %}
+
+        				<span class="current">
+        					{% for num in houses.paginator.page_range %}
+            					<a href="?page={{ num }}">{{ num }}</a>
+            				{% endfor %}
+        				</span>
+
+        				{% if houses.has_next %}
+            				<a href="?page={{ houses.next_page_number }}">Вперед &gt;</a>
+        				{% endif %}
+    				</span>
+				</div>
+
+			</div>	
+			
+			<footer>
+				<div class="left_phone">
+					Тел.: +7 940 700 10 11<br>
+					E-mail: lilia-2010@inbox.ru
+				</div>
+				<div class="viber"></div>
+				<div class="blink-text">
+					Вы можете обратиться к нам по WatsApp и Viber
+					по номеру:<br/><br/>
+					+7 940 700 10 11
+				</div>
+				<div class="link">
+					Создание сайта - <a href="	http://digart24.ru/">Digital Art</a>
+				</div>
+			</footer>
+		</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.cookie.js' %}"></script>
+
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.ui.touch-punch.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/house_filter.js' %}"></script>
+
+	</body>
+</html>

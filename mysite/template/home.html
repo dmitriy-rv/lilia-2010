@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8">
+		<title>Лилия 2010</title>
+		<meta name=viewport content="width=device-width, initial-scale=1">
+
+		<link rel="icon" type="image/vnd.microsoft.icon" href=" {% static 'img/favicon.ico' %}">
+		
+		<link rel="stylesheet" media="screen" type="text/css" href="{% static 'css/style.css' %}" />
+		<link rel="stylesheet" media="screen" type="text/css" href="{% static 'css/thumbelina.css' %}" />
+		<link href="{% static 'css/cloud-zoom.css' %}" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" media="screen" type="text/css" href="{% static 'css/popup.css' %}" />
+	</head>
+	<body class="home">
+		<div class="content">
+			<a href="/" class="logo_href">
+				<div class="logo"></div>
+			</a>
+			<div class="content_popup">
+				<div class="phone_top">
+					<div class="phone">Наш телефон:<br/>
+					+7 940 700 10 11</div>
+				</div>
+				<a href="#win1" class="button_popup submit" onclick="toggleInformer_1();"></a>
+			</div>
+
+			{% include 'callback.html' %}
+
+			<div class="header">
+				<div class="slider">
+				</div>
+
+				<div class="menu">
+					<ul>
+						<li><a href='/'>ГЛАВНАЯ</a></li>
+						<li><a href='/house/'>ЖИЛЬЕ</a></li>
+						<li><a href='/excursions/'>ЭКСКУРСИИ</a></li>
+						<li><a href='/abchazia/'>ОБ АБХАЗИИ</a></li>
+						<li><a href='/transfer/'>ТРАНСФЕР</a></li>
+						<li><a href='/contact/'>О КОМПАНИИ</a></li>
+					</ul>
+				</div>
+			</div>   
+			<div class="middle">
+				<div class="main_text">
+					{% autoescape off %}
+					{% for article in content %}
+					
+							{% load thumbnail %}
+					<div id="slider">
+						<div class="thumbelina-but vert top">&#708;</div>
+						<ul>
+							{% for image in images %}
+								{% thumbnail image.images 167x167 as thumb%}
+								{% thumbnail image.images 700x700 as small%}
+								<li>
+									<a href="/media/{{ image.images }}" class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: '{{ small.url }}' "><img src="{{ thumb.url }}" alt=""></a>
+								</li>
+							{% endfor %}
+						</ul>
+
+						<div class="thumbelina-but vert bottom">&#709;</div>
+					</div>
+					{% thumbnail images.1.images 700x700 as thumb%}
+					<a href='/media/{{ images.1.images }}' class = 'cloud-zoom' id='zoom1' rel="position:'inside'"><img src="{{ thumb.url }}" alt='' /></a>
+					<h2>{{ article.title }}</h2>
+				
+					<div class="selector">
+				
+
+					<div class="left">
+						<span class="force">Город:</span> {{ article.city }}</br>
+						<span class="force">Тип жилья:</span> {{ article.house_type }}</br>
+						<span class="force">До моря:</span> {{ article.sea }} м.</br>
+						<span class="force">Цена:</span> {{ article.price }} руб/сут.</br>
+						<!--
+						<span class="force">Телефон владельца:</span> {{ article.phone }}
+						-->
+						<div class="clear"></div>
+					</div>
+					<div class="right">
+						<div class="force">УДОБСТВА</div>
+						{% if article.hot_w == True %}
+							<div class="line">Горячая вода</div>
+						{% endif %}
+						{% if article.lavatory == True %}
+							<div class="line">Уборная</div>
+						{% endif %}
+						{% if article.w_machine == True %}
+							<div class="line">Стиральная машина</div>
+						{% endif %}
+						{% if article.shower == True %}
+							<div class="line">Душ</div>
+						{% endif %}
+						{% if article.fridge == True %}
+							<div class="line">Холодильник</div>
+						{% endif %}
+						{% if article.tv == True %}
+							<div class="line">Телевизор</div>
+						{% endif %}
+						{% if article.internet == True %}
+							<div class="line">Интернет</div>
+						{% endif %}
+						{% if article.conditioner == True %}
+							<div class="line">Кондиционер</div>
+						{% endif %}
+						{% if article.safe == True %}
+							<div class="line">Сейф</div>
+						{% endif %}
+						{% if article.food == True %}
+							<div class="line">Питание</div>
+						{% endif %}
+						{% if article.balcony == True %}
+							<div class="line">Балкон</div>
+						{% endif %}
+						{% if article.park == True %}
+							<div class="line">Парковка</div>
+						{% endif %}
+					<a href="#" class="add_top_but" onclick="toggleInformer(); return false;" id="favor">Добавить в "Избранное"</a>
+
+					<div class="clear"></div>
+					</div>
+					</div>	
+					<div class="clear"></div>
+					<p>{{ article.text }} </p>
+				</div>
+				{% if article.map_visible == True %}
+    				<div id="map" style="width: 100%; height: 300px"></div>
+				{% endif %}
+			{% endfor %}
+			{% endautoescape %}
+			</div>	
+			
+			<footer>
+				<div class="left_phone">
+					Тел.: +7 940 700 10 11<br>
+					E-mail: lilia-2010@inbox.ru
+				</div>
+				<div class="viber"></div>
+				<div class="blink-text">
+					Вы можете обратиться к нам по WatsApp и Viber
+					по номеру:<br/><br/>
+					+7 940 700 10 11
+				</div>
+				<div class="link">
+					Создание сайта - <a href="	http://digart24.ru/">Digital Art</a>
+				</div>
+			</footer>
+		</div>
+
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="{% static 'js/thumbelina.js' %}"></script>
+		<script type="text/JavaScript" src="{% static 'js/cloud-zoom.1.0.2.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/jquery.cookie.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/callback.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/fav_button.js' %}"></script>
+		<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+
+		<script type="text/javascript">
+            $(function(){                
+                $('#slider').Thumbelina({
+                    orientation:'vertical',         // Use vertical mode (default horizontal).
+                    $bwdBut:$('#slider .top'),     // Selector to top button.
+                    $fwdBut:$('#slider .bottom')   // Selector to bottom button.
+                });
+            })
+        </script> 
+
+    	<script type="text/javascript">
+							
+			ymaps.ready(init);
+
+			function init () {
+    							
+    			var list = '{{ article.map }}';
+   				coord = list.split(',');
+
+    			var myMap = new ymaps.Map("map", {
+            		center: [coord[0], coord[1]],
+            		zoom: 15
+        		}),
+
+    			// Создаем геообъект с типом геометрии "Точка".
+        		myGeoObject = new ymaps.GeoObject({
+            	// Описание геометрии.
+
+            		geometry: {
+                		type: "Point",
+                		coordinates: myMap.getCenter()
+            		},
+        		}, {
+           			// Опции.
+            		// Иконка метки будет растягиваться под размер ее содержимого.
+            		preset: 'islands#blackStretchyIcon',
+            		// Метку можно перемещать.
+        		});
+
+    			myMap.geoObjects
+        			.add(myGeoObject);
+			}
+    	</script>
+
+	</body>
+</html>

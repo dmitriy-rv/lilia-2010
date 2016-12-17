@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8">
+		<title>Лилия 2010</title>
+		<meta name=viewport content="width=device-width, initial-scale=1">
+
+		<link rel="icon" type="image/vnd.microsoft.icon" href=" {% static 'img/favicon.ico' %}">
+		
+		<link rel="stylesheet" media="screen" type="text/css" href="{% static 'css/style.css' %}" />
+		<link rel="stylesheet" media="screen" type="text/css" href="{% static 'css/popup.css' %}" />
+	</head>
+	<body>
+		<div class="content">
+			<a href="/" class="logo_href">
+				<div class="logo"></div>
+			</a>
+			<div class="content_popup">
+				<div class="phone_top">
+					<div class="phone">Наш телефон:<br/>
+					+7 940 700 10 11</div>
+				</div>
+				<a href="#win1" class="button_popup submit" onclick="toggleInformer_1();"></a>
+			</div>
+			
+			{% include 'callback.html' %}	
+			<script type="text/javascript" src="{% static 'js/callback.js' %}"></script>
+			<div class="header">
+				<div class="slider">
+				</div>
+
+				<div class="menu">
+					<ul>
+						<li><a href='/'>ГЛАВНАЯ</a></li>
+						<li><a href='/house/'>ЖИЛЬЕ</a></li>
+						<li><a href='/excursions/'>ЭКСКУРСИИ</a></li>
+						<li><a href='/abchazia/'>ОБ АБХАЗИИ</a></li>
+						<li><a href='/transfer/'>ТРАНСФЕР</a></li>
+						<li><a href='/contact/'>О КОМПАНИИ</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="middle middle_ex">
+				{% for article in content %}
+				<div class="bottom_to_top"><a href="/excursion/{{ article.id }}">
+        			<div class="img">
+        				{% load cropping %}
+						<img src="{% cropped_thumbnail article "cropping" %}">
+					</div>
+        			<div class="info">
+          			<h3>{{ article.title }}</h3>
+          			<p>Читать описание</p>
+        		</div></a></div>
+				{% endfor %}
+			</div>	
+			
+			<div class="pagination">
+    				<span class="step-links">
+        				{% if content.has_previous %}
+            				<a href="?page={{ content.previous_page_number }}">&lt; Назад</a>
+        				{% endif %}
+
+        				<span class="current">
+        					{% for num in content.paginator.page_range %}
+            					<a href="?page={{ num }}">{{ num }}</a>
+            				{% endfor %}
+        				</span>
+
+        				{% if content.has_next %}
+            				<a href="?page={{ content.next_page_number }}">Вперед &gt;</a>
+        				{% endif %}
+    				</span>
+				</div>
+
+			<footer>
+				<div class="left_phone">
+					Тел.: +7 940 700 10 11<br>
+					E-mail: lilia-2010@inbox.ru
+				</div>
+				<div class="viber"></div>
+				<div class="blink-text">
+					Вы можете обратиться к нам по WatsApp и Viber
+					по номеру:<br/><br/>
+					+7 940 700 10 11
+				</div>
+				<div class="link">
+					Создание сайта - <a href="	http://digart24.ru/">Digital Art</a>
+				</div>
+			</footer>
+		</div>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+		<script type="text/javascript" src="{% static 'js/jquery.cookie.js' %}"></script>
+	</body>
+</html>

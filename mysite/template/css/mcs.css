@@ -1,0 +1,122 @@
+
+.selectcontrolm{
+    position: relative;
+    width: 200px;
+    -webkit-box-shadow: 0 0 4px 1px rgba(0,0,0,0.4);
+    box-shadow: 0 0 4px 1px rgba(0,0,0,0.4);
+    margin-bottom: 20px;
+}
+
+.selectcontrolm input[type="checkbox"]{
+    display: none;
+}
+
+.selectcontrolm input[type="checkbox"]:checked + label.mcs-item{
+  background:#070849;
+  color:white;
+}
+
+/*The container that holds the dropdown items*/
+.mcs-container{
+    	width:100%;
+        overflow:hidden;
+        background:white;
+        box-sizing: border-box;
+        position: absolute;
+        z-index: 10;
+        clear:both;
+        height: 0;
+        box-shadow: 0 0 4px 1px rgba(0,0,0,0.4);
+        -webkit-transition: all 700ms ease;
+        -moz-transition: all 700ms ease;
+        -ms-transition: all 700ms ease;
+        -o-transition: all 700ms ease;
+        transition: all 700ms ease;
+}
+
+.selectcontrolm:hover .mcs-container{
+    z-index: 20;
+    height: 200px;
+ /*   display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; */
+}
+
+.active{
+    z-index: 20;
+    height: 180px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/*The menu items (options)*/
+
+.mcs-item{
+	box-sizing: border-box;
+    display: block;
+	background:white;
+	color:#070849;    
+	text-decoration: none;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+    margin: 3px;
+    font-family: opensans;
+}
+
+.mcs-open{
+    display: inline-block;
+    box-sizing: border-box;
+    background:#070849;
+    color:#FFF;    
+    text-decoration: none;
+    border: 0;
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+    padding: 0 10px 0 40px;
+	width:100%;
+}
+
+.mcs-open:hover{
+    background: rgb(26, 74, 114);
+    cursor:pointer;
+    color: white;  
+}
+
+.mcs-item:hover{
+background: rgba(26, 74, 114, 0.5);
+cursor:pointer;
+color: white;
+}
+
+
+
+/*Clear class used to push float- can just point to an exsisting clear class*/
+.clear{
+	display:block;
+	clear:both;
+}
+        
+.mcs-item{
+     /*   -moz-transform: scale(0.95) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        -webkit-transform: scale(0.95) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        -o-transform: scale(0.95) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        -ms-transform: scale(0.95) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        transform: scale(0.95) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        -webkit-transition: all 300ms ease;
+        -moz-transition: all 300ms ease;
+        -ms-transition: all 300ms ease;
+        -o-transition: all 300ms ease; */
+        transition: all 300ms ease;
+
+}
+.mcs-item:hover{
+    /*    -moz-transform: scale(1) rotate(-3deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        -webkit-transform: scale(1) rotate(-3deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        -o-transform: scale(1) rotate(-3deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        -ms-transform: scale(1) rotate(-3deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        transform: scale(1) rotate(-3deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        */
+}

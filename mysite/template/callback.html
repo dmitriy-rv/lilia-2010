@@ -1,0 +1,78 @@
+<!-- Модальное окно -->
+				<a href="#x" class="overlay" id="win1"></a>
+				<div class="popup">
+					<div class="title">
+						Оставить заявку
+					</div>
+					<div class="text">
+						Здесь вы можете отправить запрос на наличие свободного жилья по всем имеющимся на сайте объявлениям, либо только по добавленным в избранное. Добавить в избранное объявление можно в каталоге.
+					</div> 	
+
+  					<form method="get" name="callback" autocomplete="on" action="javascript:void(null);" onsubmit="call()">
+  						<table>
+  							<tr>
+  								<td>
+  									<label for="name">Имя*:</label>
+  								</td>
+  								<td>
+  									<input type="text" name="name" required/>
+  								</td>
+  								<td>
+  									<label for="surname">Фамилия:</label>
+  								</td>
+  								<td>
+  									<input type="text" name="surname" />
+  								</td>
+  							</tr>
+  							<tr>
+  								<td>
+  									<label for="email">E-mail:</label>
+  								</td>
+  								<td>
+  									<input type="email" name="email" />
+  								</td>
+  								<td>
+  									<label for="phone">Телефон*:</label>
+  								</td>
+  								<td>
+  									<input type="tel" name="phone" required/>
+  								</td>
+  							</tr>
+  						</table>
+  						<br/>			
+						Удобное время для связи по телефону*  
+						<label for="phone">с:</label>
+						<input type="time" name="time_from" class="chose" required/>
+						<label for="phone">до:</label>
+						<input type="time" name="time_to" class="chose" required/><br/>
+						<br/>
+
+						<label for="phone">Дата приезда:</label>
+						<input type="date" name="date_from" class="chose" />
+						<label for="phone">Дата отъезда:</label>
+						<input type="date" name="date_to" class="chose" /><br/>
+						<br/>
+						
+						<label for="phone">Количество взрослых:</label>
+						<input type="number" name="people" class="number chose" min="0" max="99" />
+						<label for="phone">Детей до 5 лет:</label>
+						<input type="number" name="child_5" class="number chose" min="0" max="99" />
+						<label for="phone">от 5 до 12 лет:</label>
+						<input type="number" name="child_12" class="number chose" min="0" max="99" /><br/>
+						<br/>
+
+						<label for="phone" class="comment_label" >Коментарии:</label><br/><br/>
+						<input maxlength="100" size="50" name="comment" class="comment"/>
+						
+						<div class="submit">
+							<input type="submit" name="submit">
+							<span>Отправить</span>
+						</div>
+
+  					</form> 
+  					<a class="close"title="Закрыть" href="#close"></a>
+  				
+					<div id="fav"></div>
+				
+				</div>
+				
